@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: axpense
+      POSTGRES_USER: axpense
+      POSTGRES_PASSWORD: axpense
+    ports:
+      - "5432:5432"
+    volumes:
+      - axpense_pg:/var/lib/postgresql/data
+
+volumes:
+  axpense_pg:

@@ -1,0 +1,70 @@
+# Production stack: db (Postgres) + api (.NET) + web (Caddy: static SPA + reverse proxy).
+#
+# This project does NOT publish ports 80/443 itself - "web" joins the shared "edge" Docker
+# network, and a separate shared edge Caddy stack on the VPS (outside this project, at
+# ~/edge, shared with any other app such as Qncept) is the only thing bound to 80/443/443-udp
+# and terminates HTTPS. See ~/edge/Caddyfile for the axpense.net routing rule.
+#
+# Usage on the VPS:
+#   docker network create edge          # once, only if it doesn't already exist
+#   cp .env.example .env                # then fill in POSTGRES_PASSWORD / JWT_KEY
+#   docker compose -f docker-compose.prod.yml up -d --build
+services:
+  db:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-axpense}
+      POSTGRES_USER: ${POSTGRES_USER:-axpense}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - axpense_pg:/var/lib/postgresql/data
+    networks:
+      - internal
+    # No ports published to the host on purpose - only the api container needs to reach
+    # Postgres, and it does so over the internal Docker network.
+
+  api:
+    build:
+      context: .
+      dockerfile: src/Axpense.Api/Dockerfile
+    restart: unless-stopped
+    environment:
+      ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Database=${POSTGRES_DB:-axpense};Username=${POSTGRES_USER:-axpense};Password=${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}"
+      Jwt__Key: ${JWT_KEY:?Set JWT_KEY in .env (openssl rand -base64 48)}
+      Jwt__Issuer: Axpense.Api
+      Jwt__Audience: Axpense.Client
+      Jwt__DurationInMinutes: "720"
+      ASPNETCORE_ENVIRONMENT: Production
+      FileStorage__RootPath: /app/storage
+    volumes:
+      # Uploaded files (driver document scans, ...). Must survive container rebuilds.
+      - axpense_files:/app/storage
+    depends_on:
+      - db
+    networks:
+      - internal
+    # Not published to the host either - only Caddy (the web service) talks to it,
+    # over the internal network, on port 8080.
+
+  web:
+    build:
+      context: src/Axpense.Web
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - api
+    networks:
+      - internal
+      - edge
+    # No ports published here anymore - the shared edge Caddy reaches this container by its
+    # container name (axpense-web-1) on the "edge" network, on plain HTTP port 80.
+
+networks:
+  internal:
+  edge:
+    external: true
+
+volumes:
+  axpense_pg:
+  axpense_files:
