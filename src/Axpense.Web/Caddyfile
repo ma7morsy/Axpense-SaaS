@@ -1,0 +1,25 @@
+# This Caddy instance is INTERNAL ONLY in production: it does not own ports 80/443 and does
+# not manage any TLS certificate itself. A separate, shared "edge" Caddy container (running
+# once on the VPS, outside this project, alongside any other app such as Qncept) is what's
+# bound to 80/443, terminates HTTPS for axpense.net, and reverse-proxies to this container on
+# plain HTTP port 80 over the shared "edge" Docker network. See ~/edge/Caddyfile on the VPS.
+:80 {
+	encode gzip zstd
+
+	# Everything under /api/* goes to the backend container over the internal Docker network.
+	handle /api/* {
+		reverse_proxy api:8080
+	}
+
+	handle /health {
+		reverse_proxy api:8080
+	}
+
+	# Everything else is the built React SPA. try_files falls back to index.html so
+	# client-side routes (react-router) refresh correctly instead of 404ing.
+	handle {
+		root * /usr/share/caddy
+		try_files {path} /index.html
+		file_server
+	}
+}
