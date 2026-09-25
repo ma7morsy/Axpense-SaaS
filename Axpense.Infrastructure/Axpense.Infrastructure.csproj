@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      AddDefaultTokenProviders() لوحدها معرفة جوه Microsoft.AspNetCore.Identity.dll
+      اللي هي جزء من الـ ASP.NET Core Shared Framework (Microsoft.AspNetCore.App)،
+      مش NuGet package عادي - مينفعش توصلها من Class Library غير عن طريق
+      FrameworkReference زي تحت. باقي الـ Identity APIs (AddIdentityCore, UserManager,
+      RoleManager) دي موجودة في Microsoft.Extensions.Identity.Core/Stores وشغالة عادي
+      من غير الحاجة دي.
+    -->
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Axpense.Data\Axpense.Data.csproj" />
+  </ItemGroup>
+
+</Project>
