@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\BaseService\Commands\Validatiors\" />
+    <Folder Include="Features\BaseService\Queries\Validatiors\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="14.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Axpense.Data\Axpense.Data.csproj" />
+    <ProjectReference Include="..\Axpense.Infrastructure\Axpense.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
