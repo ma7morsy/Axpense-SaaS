@@ -1,0 +1,15 @@
+.wo-task-head{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.task-row input,.task-row select{width:100%}
+.task-row .act{width:36px;height:40px;display:grid;place-items:center;border:0;background:transparent;color:var(--muted);cursor:pointer;border-radius:var(--r)}
+.task-row .act:hover{background:var(--red-bg);color:var(--red)}
+.task-row .act svg{width:16px;height:16px}
+.wo-total{display:flex;align-items:baseline;gap:12px;font-size:13.5px;color:var(--muted)}
+.wo-total b{font-size:18px;color:var(--ink);font-weight:700}
+.wo-stat .v.sm{font-size:22px}
+.wo-tasks{border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;margin-top:12px}
+.wo-tasks tfoot td{font-weight:700}
+@media (max-width:760px){.task-row{grid-template-columns:1fr 1fr}.wo-task-head{display:none}}
+.task-row input,.task-row select{padding:10px 12px;border:1px solid var(--line);border-radius:var(--r);background-color:#fff;font-size:14.5px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.task-row input:focus,.task-row select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,162,154,.13)}
+.task-row{align-items:center}
+#wo-form .task-row{grid-template-columns:minmax(0,1fr) 220px 200px 140px 36px}

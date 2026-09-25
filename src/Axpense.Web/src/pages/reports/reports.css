@@ -1,0 +1,16 @@
+/* Reports module */
+.rp-tabs{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:thin}
+.rp-tabs .tab{white-space:nowrap}
+.rp-scroll{max-height:560px;overflow-y:auto}
+.rp-scroll thead th{position:sticky;top:0;z-index:1}
+.rp-search{height:32px;border:1px solid #DDE6EF;border-radius:9px;padding:0 12px;font-size:13px;min-width:200px;background:#fff}
+.rp-search:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,162,154,.12)}
+.rp-fc{display:flex;align-items:flex-end;gap:14px;height:210px;padding:0 4px}
+.rp-fc-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;min-width:0}
+.rp-fc-bar{flex:1;width:100%;display:flex;align-items:flex-end}
+.rp-fc-bar>div{width:100%;border-radius:8px 8px 0 0}
+.rp-fc-proj{background:repeating-linear-gradient(45deg,#CBE9E6 0 7px,#EAF6F5 7px 14px);border:1.5px dashed var(--teal);border-bottom:0}
+.rp-fc-v{font-size:11.5px;color:var(--muted);white-space:nowrap}
+.rp-fc-l{font-size:12.5px;font-weight:600;white-space:nowrap}
+.pm-prev td{vertical-align:middle}
+@media (max-width:700px){ .rp-fc{gap:6px} .rp-fc-v{display:none} }

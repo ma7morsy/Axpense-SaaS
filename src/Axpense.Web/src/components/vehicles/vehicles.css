@@ -1,0 +1,9 @@
+/* Vehicle profile record tables: keep numbers/dates on one line, let only descriptive cells wrap. */
+.vt td{white-space:nowrap}
+.vt td.wrap{white-space:normal;min-width:180px}
+.vt td .t-sub{white-space:nowrap}
+.vt td.wrap .t-sub{white-space:normal}
+.split .tabs .tab{padding:12px 11px;font-size:14px}
+.ho-check{display:flex!important;flex-direction:row!important;gap:14px;align-items:flex-start;border:1px solid var(--line);border-radius:var(--r-lg);padding:16px 18px;background:#FBFCFE;cursor:pointer}
+.ho-check input{width:20px;height:20px;margin-top:2px;accent-color:var(--teal);flex:none}
+.ho-check b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:3px}

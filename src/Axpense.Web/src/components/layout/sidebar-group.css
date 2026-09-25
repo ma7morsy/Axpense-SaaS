@@ -1,0 +1,9 @@
+/* Collapsible Administration group in the dark sidebar */
+.nav-parent{width:100%;border:0;background:transparent;font:inherit;text-align:left}
+.nav-parent .nav-chev{width:17px !important;height:17px !important;margin-left:auto;opacity:.75;transition:transform .15s}
+.nav-group.open .nav-parent .nav-chev{transform:rotate(180deg)}
+.nav-parent.within:not(.on){background:rgba(255,255,255,.06)}
+.nav-children{position:relative;margin:2px 0 6px 26px;padding-left:12px;border-left:1px solid rgba(255,255,255,.18)}
+.nav-a.nav-sub{height:40px;font-size:14.5px;gap:12px;padding:0 12px;margin-bottom:3px}
+.nav-a.nav-sub svg{width:19px;height:19px}
+.app.rail .nav-parent .nav-chev{display:none}

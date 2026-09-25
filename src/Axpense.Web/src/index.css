@@ -1,0 +1,84 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Brand -- teal, matched to the approved reference console */
+  --color-brand-50: #eafaf6;
+  --color-brand-100: #d6f3ec;
+  --color-brand-200: #a9e6d9;
+  --color-brand-300: #6fd2bf;
+  --color-brand-400: #43c9b2;
+  --color-brand-500: #1fa58f;
+  --color-brand-600: #12806f;
+  --color-brand-700: #0e6a5c;
+  --color-brand-800: #0b544a;
+  --color-brand-900: #0a453d;
+
+  /* Sidebar navy -- matched to the approved reference console */
+  --color-navy-950: #061c33;
+  --color-navy-900: #082a4b;
+  --color-navy-800: #0a3b60;
+  --color-navy-700: #0c4670;
+  --color-navy-600: #164f7d;
+
+  /* Neutral ink */
+  --color-ink-900: #0f2a44;
+  --color-ink-700: #26394f;
+  --color-ink-500: #5f7387;
+  --color-ink-400: #93a3b4;
+  --color-ink-300: #b9c5d1;
+
+  /* Surfaces */
+  --color-surface: #ffffff;
+  --color-page: #f3f7fb;
+  --color-hairline: #e8eef4;
+
+  /* Chart categorical (validated order, unmodified) */
+  --color-chart-1: #2a78d6;
+  --color-chart-2: #eb6834;
+  --color-chart-3: #1baf7a;
+  --color-chart-4: #eda100;
+
+  /* Status (fixed, never themed) */
+  --color-status-good: #12a67c;
+  --color-status-warning: #b86a0e;
+  --color-status-serious: #ec835a;
+  --color-status-critical: #d6452c;
+
+  --shadow-card: 0 1px 2px rgba(13, 58, 100, 0.04), 0 6px 20px rgba(13, 58, 100, 0.045);
+  --shadow-card-lg: 0 22px 54px rgba(11, 42, 74, 0.2);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+  }
+  body {
+    @apply bg-page text-ink-900 antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  * {
+    border-color: var(--color-hairline);
+  }
+  ::selection {
+    background: var(--color-brand-200);
+  }
+}
+
+@layer utilities {
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--color-ink-300);
+    border-radius: 999px;
+  }
+}

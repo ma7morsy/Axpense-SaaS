@@ -1,0 +1,9 @@
+.ins-val{width:92px;padding:7px 9px;border:1px solid var(--line);border-radius:var(--r);background:#fff}
+.ins-comment{flex:1;min-height:52px;padding:8px 10px;border:1px solid var(--line);border-radius:var(--r);resize:vertical;font:inherit}
+.ins-ev{object-fit:cover;border-radius:var(--r);border:1px solid var(--line);display:block}
+.ins-ev.lg{width:96px;height:72px}
+.ins-ev.sm{width:56px;height:42px}
+.tpl-card .card-h{align-items:flex-start}
+.tpl-card table td{border-bottom:1px solid var(--line-s)}
+.tpl-new{display:grid;place-items:center;min-height:200px;border-style:dashed!important;cursor:pointer}
+.tpl-new:hover{border-color:var(--teal)!important}
